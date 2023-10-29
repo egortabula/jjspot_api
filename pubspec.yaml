@@ -12,6 +12,7 @@ dependencies:
   dart_mappable: ^4.0.1
   flutter:
     sdk: flutter
+  mime: ^1.0.4
 
 dev_dependencies:
   flutter_test:

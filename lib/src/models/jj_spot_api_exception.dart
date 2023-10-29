@@ -1,4 +1,4 @@
-class JjSpotApiException implements Exception {
+class JjSpotApiException {
   final String message;
   final int code;
   final bool hasError;

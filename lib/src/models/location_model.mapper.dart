@@ -13,7 +13,6 @@ class LocationModelMapper extends ClassMapperBase<LocationModel> {
   static LocationModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = LocationModelMapper._());
-      LatLngModelMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -21,37 +20,51 @@ class LocationModelMapper extends ClassMapperBase<LocationModel> {
   @override
   final String id = 'LocationModel';
 
+  static Map<String, dynamic>? _$unmappedProps(LocationModel v) =>
+      v.unmappedProps;
+  static const Field<LocationModel, Map<String, dynamic>> _f$unmappedProps =
+      Field('unmappedProps', _$unmappedProps);
   static String _$name(LocationModel v) => v.name;
   static const Field<LocationModel, String> _f$name = Field('name', _$name);
   static String _$description(LocationModel v) => v.description;
   static const Field<LocationModel, String> _f$description =
       Field('description', _$description);
-  static List<String> _$images(LocationModel v) => v.images;
-  static const Field<LocationModel, List<String>> _f$images =
+  static List<dynamic> _$images(LocationModel v) => v.images;
+  static const Field<LocationModel, List<dynamic>> _f$images =
       Field('images', _$images);
   static String _$address(LocationModel v) => v.address;
   static const Field<LocationModel, String> _f$address =
       Field('address', _$address);
-  static LatLngModel _$latLng(LocationModel v) => v.latLng;
-  static const Field<LocationModel, LatLngModel> _f$latLng =
-      Field('latLng', _$latLng);
+  static double _$lat(LocationModel v) => v.lat;
+  static const Field<LocationModel, double> _f$lat = Field('lat', _$lat);
+  static double _$lng(LocationModel v) => v.lng;
+  static const Field<LocationModel, double> _f$lng = Field('lng', _$lng);
+  static bool _$isHide(LocationModel v) => v.isHide;
+  static const Field<LocationModel, bool> _f$isHide = Field('isHide', _$isHide);
 
   @override
   final Map<Symbol, Field<LocationModel, dynamic>> fields = const {
+    #unmappedProps: _f$unmappedProps,
     #name: _f$name,
     #description: _f$description,
     #images: _f$images,
     #address: _f$address,
-    #latLng: _f$latLng,
+    #lat: _f$lat,
+    #lng: _f$lng,
+    #isHide: _f$isHide,
   };
 
+  @override
+  final MappingHook hook = const UnmappedPropertiesHook('unmappedProps');
   static LocationModel _instantiate(DecodingData data) {
-    return LocationModel(
+    return LocationModel(data.dec(_f$unmappedProps),
         name: data.dec(_f$name),
         description: data.dec(_f$description),
         images: data.dec(_f$images),
         address: data.dec(_f$address),
-        latLng: data.dec(_f$latLng));
+        lat: data.dec(_f$lat),
+        lng: data.dec(_f$lng),
+        isHide: data.dec(_f$isHide));
   }
 
   @override
@@ -109,14 +122,18 @@ extension LocationModelValueCopy<$R, $Out>
 
 abstract class LocationModelCopyWith<$R, $In extends LocationModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get images;
-  LatLngModelCopyWith<$R, LatLngModel, LatLngModel> get latLng;
+  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>?
+      get unmappedProps;
+  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get images;
   $R call(
-      {String? name,
+      {Map<String, dynamic>? unmappedProps,
+      String? name,
       String? description,
-      List<String>? images,
+      List<dynamic>? images,
       String? address,
-      LatLngModel? latLng});
+      double? lat,
+      double? lng,
+      bool? isHide});
   LocationModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -129,33 +146,47 @@ class _LocationModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<LocationModel> $mapper =
       LocationModelMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get images =>
+  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>?
+      get unmappedProps => $value.unmappedProps != null
+          ? MapCopyWith(
+              $value.unmappedProps!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(unmappedProps: v))
+          : null;
+  @override
+  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get images =>
       ListCopyWith($value.images, (v, t) => ObjectCopyWith(v, $identity, t),
           (v) => call(images: v));
   @override
-  LatLngModelCopyWith<$R, LatLngModel, LatLngModel> get latLng =>
-      $value.latLng.copyWith.$chain((v) => call(latLng: v));
-  @override
   $R call(
-          {String? name,
+          {Object? unmappedProps = $none,
+          String? name,
           String? description,
-          List<String>? images,
+          List<dynamic>? images,
           String? address,
-          LatLngModel? latLng}) =>
+          double? lat,
+          double? lng,
+          bool? isHide}) =>
       $apply(FieldCopyWithData({
+        if (unmappedProps != $none) #unmappedProps: unmappedProps,
         if (name != null) #name: name,
         if (description != null) #description: description,
         if (images != null) #images: images,
         if (address != null) #address: address,
-        if (latLng != null) #latLng: latLng
+        if (lat != null) #lat: lat,
+        if (lng != null) #lng: lng,
+        if (isHide != null) #isHide: isHide
       }));
   @override
-  LocationModel $make(CopyWithData data) => LocationModel(
-      name: data.get(#name, or: $value.name),
-      description: data.get(#description, or: $value.description),
-      images: data.get(#images, or: $value.images),
-      address: data.get(#address, or: $value.address),
-      latLng: data.get(#latLng, or: $value.latLng));
+  LocationModel $make(CopyWithData data) =>
+      LocationModel(data.get(#unmappedProps, or: $value.unmappedProps),
+          name: data.get(#name, or: $value.name),
+          description: data.get(#description, or: $value.description),
+          images: data.get(#images, or: $value.images),
+          address: data.get(#address, or: $value.address),
+          lat: data.get(#lat, or: $value.lat),
+          lng: data.get(#lng, or: $value.lng),
+          isHide: data.get(#isHide, or: $value.isHide));
 
   @override
   LocationModelCopyWith<$R2, LocationModel, $Out2> $chain<$R2, $Out2>(
