@@ -1,6 +1,6 @@
-const String appwriteProjectId = '653a4fa4cafcc5db0c60';
+const String appwriteProjectId = '654420232f9e61d35731';
 const String appwriteApiEndpoint = 'https://appwrite.jjspot.ru/v1';
-const String appName = 'jjspot админ';
+const String appName = 'jj.spot админ';
 
 class AppwriteDevConfig extends AppwriteConfig {
   AppwriteDevConfig();
@@ -37,6 +37,22 @@ abstract class AppwriteConfig {
   String get userBucketId => _usersBucketId;
 }
 
-class AppwriteProdConfig extends AppwriteConfig {}
+class AppwriteProdConfig extends AppwriteConfig {
+  AppwriteProdConfig();
+  @override
+  String get databaseId => '654420dc8f7d6fb2e959';
+
+  @override
+  String get locationCollectionId => '654420eb61ec78a7424e';
+
+  @override
+  String get usersCollectionId => '654420e3028cb5bdca3e';
+
+  @override
+  String get locationBucketId => '6544cab81f9ab838bb9a';
+
+  @override
+  String get userBucketId => '6544caec7d776bf1fa0e';
+}
 
 //TODO: add prod appwrite configuration

@@ -65,8 +65,8 @@ class JJspotApi {
   }
 
   Future<void> _initProd() async {
-    client = Client();
-    //TODO: create initProd
+    client =
+        Client().setEndpoint(appwriteApiEndpoint).setProject(appwriteProjectId);
   }
 
   /// Метод инициализации appwrite
