@@ -95,7 +95,7 @@ class JJspotApi {
         queries: [
           Query.equal('isHide', false),
           Query.orderDesc('\$createdAt'),
-          Query.limit(15),
+          Query.limit(15000),
         ],
       );
     } else {
@@ -106,7 +106,7 @@ class JJspotApi {
           Query.equal('isHide', false),
           Query.orderDesc('\$createdAt'),
           Query.cursorAfter(lastId!),
-          Query.limit(15),
+          Query.limit(15000),
         ],
       );
     }
