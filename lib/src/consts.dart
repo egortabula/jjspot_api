@@ -4,32 +4,12 @@ const String appName = 'jj.spot админ';
 const String passwordRecoveryRedirectUrl =
     'https://jjspot.web.app/reset-password';
 
-abstract class AppwriteConfig {
-  final String databaseId = throw UnimplementedError();
+const String databaseId = '654420dc8f7d6fb2e959';
 
-  final String locationsCollectionId = throw UnimplementedError();
+const String usersCollectionId = '654420e3028cb5bdca3e';
 
-  final String usersCollectionId = throw UnimplementedError();
+const String locationsBucketId = '654420eb61ec78a7424e';
 
-  final String locationsBucketId = throw UnimplementedError();
+const String locationsCollectionId = '6544cab81f9ab838bb9a';
 
-  final String usersBucketId = throw UnimplementedError();
-}
-
-class AppwriteProdConfig implements AppwriteConfig {
-  AppwriteProdConfig();
-  @override
-  String get databaseId => '654420dc8f7d6fb2e959';
-
-  @override
-  String get usersCollectionId => '654420e3028cb5bdca3e';
-
-  @override
-  String get locationsBucketId => '654420eb61ec78a7424e';
-
-  @override
-  String get locationsCollectionId => '6544cab81f9ab838bb9a';
-
-  @override
-  String get usersBucketId => '6544caec7d776bf1fa0e';
-}
+const String usersBucketId = '6544caec7d776bf1fa0e';

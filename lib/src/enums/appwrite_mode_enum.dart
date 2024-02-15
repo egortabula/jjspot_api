@@ -1,0 +1,4 @@
+enum AppwriteMode {
+  debug,
+  production,
+}

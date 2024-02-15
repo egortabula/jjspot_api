@@ -1,10 +1,11 @@
 import '../jjspot_api.dart';
+import 'consts.dart';
 
 class JjspotRealtime {
   static List<String> get locationChanels {
     return [
-      'databases.${JJspotApi.instance.appwriteConfig.databaseId}.'
-          'collections.${JJspotApi.instance.appwriteConfig.locationsCollectionId}.'
+      'databases.$databaseId.'
+          'collections.$locationsCollectionId.'
           'documents',
     ];
   }

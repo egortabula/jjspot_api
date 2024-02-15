@@ -15,7 +15,7 @@ class AppwriteUtils {
 
   static String getImageUrl(String imageId) {
     final url = '$appwriteApiEndpoint/storage/buckets/'
-        '${JJspotApi.instance.appwriteConfig.locationsBucketId}/files/'
+        '$locationsBucketId/files/'
         '$imageId/view?project=$appwriteProjectId';
     return url;
   }
