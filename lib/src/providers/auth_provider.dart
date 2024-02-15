@@ -42,4 +42,20 @@ class AuthProvider {
       return left(e);
     }
   }
+
+  Future<Either<AppwriteException, Unit>> updatePasswordRecovery(
+    UpdateRecoveryRequest req,
+  ) async {
+    try {
+      await _account.updateRecovery(
+        userId: req.userId,
+        secret: req.secret,
+        password: req.password,
+        passwordAgain: req.passwordAgain,
+      );
+      return right(unit);
+    } on AppwriteException catch (e) {
+      return left(e);
+    }
+  }
 }

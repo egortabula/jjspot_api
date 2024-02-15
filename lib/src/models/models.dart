@@ -11,3 +11,4 @@ export './update_favorite_locations_request.dart';
 export './update_location_attribute_request.dart';
 export './update_password_request.dart';
 export './update_password_response.dart';
+export './update_recovery_request.dart';
