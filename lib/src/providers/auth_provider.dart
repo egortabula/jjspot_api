@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:appwrite/appwrite.dart';
 import 'package:dartz/dartz.dart';
 
@@ -5,9 +7,10 @@ import '../consts.dart';
 import '../models/models.dart';
 
 class AuthProvider {
-  const AuthProvider(this._account);
+  const AuthProvider(this._account, this._functions);
 
   final Account _account;
+  final Functions _functions;
 
   Future<Either<AppwriteException, CreateAccountResponse>> createAccount(
       CreateAccountRequest request) async {
@@ -73,5 +76,39 @@ class AuthProvider {
     } on AppwriteException catch (e) {
       return left(e);
     }
+  }
+
+  Future<Either<AppwriteException, UpdatePasswordResponse>> updatePassword(
+    UpdatePasswordRequest request,
+  ) async {
+    try {
+      final user = await _account.updatePassword(
+        password: request.password,
+        oldPassword: request.oldPassword,
+      );
+      final res = UpdatePasswordResponse(user: user);
+      return right(res);
+    } on AppwriteException catch (e) {
+      return left(e);
+    }
+  }
+
+  Future<bool> deleteAccount(
+    String userId,
+  ) async {
+    final exec = await _functions.createExecution(
+      functionId: '6546fbd075cd82b7f071',
+      body: jsonEncode(
+        {
+          'id': userId,
+        },
+      ),
+      path: '/',
+      method: 'GET',
+    );
+    if (exec.responseStatusCode != 204) {
+      return false;
+    }
+    return true;
   }
 }
