@@ -51,9 +51,11 @@ class JJspotApi {
     return Storage(client);
   }
 
+  Functions get functions => Functions(client);
+
   AdminProvider get adminProvider => AdminProvider(databases);
 
-  AuthProvider get authProvider => AuthProvider(account);
+  AuthProvider get authProvider => AuthProvider(account, functions);
 
   LocationsProvider get locationsProvider => LocationsProvider(databases);
 
