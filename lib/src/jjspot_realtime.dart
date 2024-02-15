@@ -4,7 +4,7 @@ class JjspotRealtime {
   static List<String> get locationChanels {
     return [
       'databases.${JJspotApi.instance.appwriteConfig.databaseId}.'
-          'collections.${JJspotApi.instance.appwriteConfig.locationCollectionId}.'
+          'collections.${JJspotApi.instance.appwriteConfig.locationsCollectionId}.'
           'documents',
     ];
   }

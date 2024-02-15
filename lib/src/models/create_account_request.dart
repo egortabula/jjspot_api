@@ -1,8 +1,8 @@
-class CreateEmailSessionRequestModel {
+class CreateAccountRequest {
   final String email;
   final String password;
 
-  CreateEmailSessionRequestModel({
+  CreateAccountRequest({
     required this.email,
     required this.password,
   });
