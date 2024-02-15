@@ -31,4 +31,47 @@ class StorageProvider {
       return left(e);
     }
   }
+
+  Future<Either<AppwriteException, Unit>> uploadAvatar(
+    Uint8List avatarBytes,
+    String filename, {
+    required bool isAvatarExist,
+    required String userId,
+  }) async {
+    try {
+      if (isAvatarExist) {
+        await _storage.deleteFile(
+          bucketId: usersBucketId,
+          fileId: userId,
+        );
+      }
+      await _storage.createFile(
+        bucketId: usersBucketId,
+        fileId: userId,
+        file: InputFile.fromBytes(
+          bytes: avatarBytes,
+          filename: filename,
+        ),
+      );
+      return right(unit);
+    } on AppwriteException catch (e) {
+      return left(e);
+    }
+  }
+
+  Future<Either<AppwriteException, Uint8List>> getUserAvatar(
+    String userId,
+  ) async {
+    try {
+      final avatar = await _storage.getFilePreview(
+        bucketId: usersBucketId,
+        fileId: userId,
+        width: 200,
+        height: 200,
+      );
+      return right(avatar);
+    } on AppwriteException catch (e) {
+      return left(e);
+    }
+  }
 }
