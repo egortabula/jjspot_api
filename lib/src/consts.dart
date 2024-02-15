@@ -1,6 +1,8 @@
 const String appwriteProjectId = '654420232f9e61d35731';
 const String appwriteApiEndpoint = 'https://appwrite.jjspot.ru/v1';
 const String appName = 'jj.spot админ';
+const String passwordRecoveryRedirectUrl =
+    'https://jjspot.web.app/reset-password';
 
 abstract class AppwriteConfig {
   final String databaseId = throw UnimplementedError();
@@ -31,4 +33,3 @@ class AppwriteProdConfig implements AppwriteConfig {
   @override
   String get usersBucketId => '6544caec7d776bf1fa0e';
 }
-

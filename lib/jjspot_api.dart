@@ -316,6 +316,20 @@ class JJspotApi {
       return left(e);
     }
   }
+
+  Future<Either<AppwriteException, CreatePasswordRecoveryResponse>>
+      createPasswordRecovery(String email) async {
+    try {
+      final token = await account.createRecovery(
+        email: email,
+        url: passwordRecoveryRedirectUrl,
+      );
+      final res = CreatePasswordRecoveryResponse(token: token);
+      return right(res);
+    } on AppwriteException catch (e) {
+      return left(e);
+    }
+  }
 }
 
 enum AppwriteMode {
