@@ -15,6 +15,7 @@ export './src/realtime_events.dart';
 export './src/dto/dtos.dart';
 export './src/enums/enums.dart';
 export './src/models/models.dart';
+export './src/providers/providers.dart';
 
 class JJspotApi {
   static JJspotApi? _instance;
