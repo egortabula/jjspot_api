@@ -10,6 +10,21 @@ class UserProvider {
 
   final Databases _databases;
 
+  Future<Either<AppwriteException, UserDto>> getUserById(String userId) async {
+    try {
+      final doc = await _databases.getDocument(
+        databaseId: databaseId,
+        collectionId: usersCollectionId,
+        documentId: userId,
+      );
+
+      final res = UserDtoMapper.fromMap(doc.data);
+      return right(res);
+    } on AppwriteException catch (e) {
+      return left(e);
+    }
+  }
+
   Future<Either<AppwriteException, CreateLocationRateResponse>>
       createLocationRate({
     required RateDto rateDto,
