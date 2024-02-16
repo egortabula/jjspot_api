@@ -74,7 +74,7 @@ class UserProvider {
       data.removeWhere((key, value) => key != 'locations');
       final doc = await _databases.updateDocument(
         databaseId: databaseId,
-        collectionId: locationsCollectionId,
+        collectionId: usersCollectionId,
         documentId: request.currentUser.id,
         data: data,
       );
