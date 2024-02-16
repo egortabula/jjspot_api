@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:jjspot_api/src/dto/location_dto.dart';
 import 'package:jjspot_api/src/dto/rate_dto.dart';
 
@@ -57,6 +58,7 @@ class UserDtoHook extends MappingHook {
     value = value as Map<String, dynamic>;
     List<dynamic> reviews = value['reviews'];
     List<dynamic> locations = value['locations'];
+    debugPrint('locations afterEncode: ${locations.toString()}');
 
     reviews = reviews.map((review) => review[r'\$id']).toList();
     locations = locations.map((location) => location[r'\$id']).toList();
