@@ -1,5 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 
 import '../consts.dart';
 import '../dto/dtos.dart';
@@ -70,8 +71,10 @@ class UserProvider {
   ) async {
     try {
       Map<String, dynamic> data = request.currentUser.toMap();
+      debugPrint(data.toString());
 
       data.removeWhere((key, value) => key != 'locations');
+      debugPrint('data after cleaning: ${data.toString()}');
       final doc = await _databases.updateDocument(
         databaseId: databaseId,
         collectionId: usersCollectionId,
