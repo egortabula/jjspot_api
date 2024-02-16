@@ -35,6 +35,19 @@ class UserDto with UserDtoMappable {
   void removeFavoriteLocation(LocationDto location) {
     favoriteLocationsList.remove(location);
   }
+
+  bool isLocationFavorite(LocationDto location) {
+    return favoriteLocationsList.contains(location);
+  }
+
+  bool isLocationRated(LocationDto location) {
+    try {
+      final list = locationsReview.firstWhere((el) => el.location == location);
+      return true;
+    } on StateError catch (e) {
+      return false;
+    }
+  }
 }
 
 class UserDtoHook extends MappingHook {
