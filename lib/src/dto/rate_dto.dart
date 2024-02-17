@@ -8,7 +8,7 @@ part './generated/rate_dto.mapper.dart';
 class RateDto with RateDtoMappable {
   @MappableField(key: r'\$id')
   String? id;
-  final double rating;
+  final int rating;
 
   final LocationDto? location;
 

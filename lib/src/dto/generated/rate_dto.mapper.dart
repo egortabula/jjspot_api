@@ -23,8 +23,8 @@ class RateDtoMapper extends ClassMapperBase<RateDto> {
 
   static String? _$id(RateDto v) => v.id;
   static const Field<RateDto, String> _f$id = Field('id', _$id, key: '\$id');
-  static double _$rating(RateDto v) => v.rating;
-  static const Field<RateDto, double> _f$rating = Field('rating', _$rating);
+  static int _$rating(RateDto v) => v.rating;
+  static const Field<RateDto, int> _f$rating = Field('rating', _$rating);
   static LocationDto? _$location(RateDto v) => v.location;
   static const Field<RateDto, LocationDto> _f$location =
       Field('location', _$location);
@@ -97,7 +97,7 @@ extension RateDtoValueCopy<$R, $Out> on ObjectCopyWith<$R, RateDto, $Out> {
 abstract class RateDtoCopyWith<$R, $In extends RateDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   LocationDtoCopyWith<$R, LocationDto, LocationDto>? get location;
-  $R call({String? id, double? rating, LocationDto? location});
+  $R call({String? id, int? rating, LocationDto? location});
   RateDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -113,7 +113,7 @@ class _RateDtoCopyWithImpl<$R, $Out>
   LocationDtoCopyWith<$R, LocationDto, LocationDto>? get location =>
       $value.location?.copyWith.$chain((v) => call(location: v));
   @override
-  $R call({Object? id = $none, double? rating, Object? location = $none}) =>
+  $R call({Object? id = $none, int? rating, Object? location = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (rating != null) #rating: rating,
