@@ -37,7 +37,7 @@ class LocationHook extends MappingHook {
     value = value as Map<String, dynamic>;
     var location = value['location'] as Map<String, dynamic>;
 
-    value['location'] = location['id'];
+    value['location'] = location[r'$id'];
     return super.afterEncode(value);
   }
 }
