@@ -1,12 +1,9 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:jjspot_api/jjspot_api.dart';
 
-import '../consts.dart';
-import '../dto/dtos.dart';
-import '../models/models.dart';
+
 
 class UserProvider {
   const UserProvider(this._databases, this._account);
