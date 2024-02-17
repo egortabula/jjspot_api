@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+part './generated/promocode_duration_enum.mapper.dart';
 
 @MappableEnum(defaultValue: PromocodeDurationEnum.undefined)
 enum PromocodeDurationEnum {

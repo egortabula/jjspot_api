@@ -1,9 +1,9 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:jjspot_api/jjspot_api.dart';
-import 'package:jjspot_api/src/enums/promocode_duration_enum.dart';
+part './generated/promocode_dto.mapper.dart';
 
 @MappableClass()
-class PromocodeDto {
+class PromocodeDto with PromocodeDtoMappable {
   @MappableField(key: r'\$id')
   final String id;
 
@@ -22,8 +22,6 @@ class PromocodeDto {
     required this.duration,
     required this.usedBy,
   });
-
-  
 }
 
 class PromocodeHook extends MappingHook {
