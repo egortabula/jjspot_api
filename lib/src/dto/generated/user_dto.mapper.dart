@@ -15,7 +15,6 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
       MapperContainer.globals.use(_instance = UserDtoMapper._());
       RateDtoMapper.ensureInitialized();
       LocationDtoMapper.ensureInitialized();
-      PromocodeDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -34,9 +33,6 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
       v.favoriteLocationsList;
   static const Field<UserDto, List<LocationDto>> _f$favoriteLocationsList =
       Field('favoriteLocationsList', _$favoriteLocationsList, key: 'locations');
-  static List<PromocodeDto> _$promoCodesList(UserDto v) => v.promoCodesList;
-  static const Field<UserDto, List<PromocodeDto>> _f$promoCodesList =
-      Field('promoCodesList', _$promoCodesList, key: 'promoCodes');
 
   @override
   final MappableFields<UserDto> fields = const {
@@ -44,7 +40,6 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
     #email: _f$email,
     #locationsReview: _f$locationsReview,
     #favoriteLocationsList: _f$favoriteLocationsList,
-    #promoCodesList: _f$promoCodesList,
   };
 
   @override
@@ -54,8 +49,7 @@ class UserDtoMapper extends ClassMapperBase<UserDto> {
         id: data.dec(_f$id),
         email: data.dec(_f$email),
         locationsReview: data.dec(_f$locationsReview),
-        favoriteLocationsList: data.dec(_f$favoriteLocationsList),
-        promoCodesList: data.dec(_f$promoCodesList));
+        favoriteLocationsList: data.dec(_f$favoriteLocationsList));
   }
 
   @override
@@ -114,14 +108,11 @@ abstract class UserDtoCopyWith<$R, $In extends UserDto, $Out>
   ListCopyWith<$R, LocationDto,
           LocationDtoCopyWith<$R, LocationDto, LocationDto>>
       get favoriteLocationsList;
-  ListCopyWith<$R, PromocodeDto,
-      PromocodeDtoCopyWith<$R, PromocodeDto, PromocodeDto>> get promoCodesList;
   $R call(
       {String? id,
       String? email,
       List<RateDto>? locationsReview,
-      List<LocationDto>? favoriteLocationsList,
-      List<PromocodeDto>? promoCodesList});
+      List<LocationDto>? favoriteLocationsList});
   UserDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -145,24 +136,17 @@ class _UserDtoCopyWithImpl<$R, $Out>
           (v, t) => v.copyWith.$chain(t),
           (v) => call(favoriteLocationsList: v));
   @override
-  ListCopyWith<$R, PromocodeDto,
-          PromocodeDtoCopyWith<$R, PromocodeDto, PromocodeDto>>
-      get promoCodesList => ListCopyWith($value.promoCodesList,
-          (v, t) => v.copyWith.$chain(t), (v) => call(promoCodesList: v));
-  @override
   $R call(
           {String? id,
           String? email,
           List<RateDto>? locationsReview,
-          List<LocationDto>? favoriteLocationsList,
-          List<PromocodeDto>? promoCodesList}) =>
+          List<LocationDto>? favoriteLocationsList}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (email != null) #email: email,
         if (locationsReview != null) #locationsReview: locationsReview,
         if (favoriteLocationsList != null)
-          #favoriteLocationsList: favoriteLocationsList,
-        if (promoCodesList != null) #promoCodesList: promoCodesList
+          #favoriteLocationsList: favoriteLocationsList
       }));
   @override
   UserDto $make(CopyWithData data) => UserDto(
@@ -170,8 +154,7 @@ class _UserDtoCopyWithImpl<$R, $Out>
       email: data.get(#email, or: $value.email),
       locationsReview: data.get(#locationsReview, or: $value.locationsReview),
       favoriteLocationsList:
-          data.get(#favoriteLocationsList, or: $value.favoriteLocationsList),
-      promoCodesList: data.get(#promoCodesList, or: $value.promoCodesList));
+          data.get(#favoriteLocationsList, or: $value.favoriteLocationsList));
 
   @override
   UserDtoCopyWith<$R2, UserDto, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
