@@ -9,7 +9,6 @@ class PromocodeDto with PromocodeDtoMappable {
 
   final String code;
 
-  final DateTime validUntil;
 
   final PromocodeDurationEnum duration;
 
@@ -18,7 +17,6 @@ class PromocodeDto with PromocodeDtoMappable {
   PromocodeDto({
     required this.id,
     required this.code,
-    required this.validUntil,
     required this.duration,
     required this.usedBy,
   });
