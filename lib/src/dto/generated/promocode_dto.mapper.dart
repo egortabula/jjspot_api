@@ -14,7 +14,6 @@ class PromocodeDtoMapper extends ClassMapperBase<PromocodeDto> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = PromocodeDtoMapper._());
       PromocodeDurationEnumMapper.ensureInitialized();
-      UserDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -30,26 +29,19 @@ class PromocodeDtoMapper extends ClassMapperBase<PromocodeDto> {
   static PromocodeDurationEnum _$duration(PromocodeDto v) => v.duration;
   static const Field<PromocodeDto, PromocodeDurationEnum> _f$duration =
       Field('duration', _$duration);
-  static List<UserDto> _$usedBy(PromocodeDto v) => v.usedBy;
-  static const Field<PromocodeDto, List<UserDto>> _f$usedBy =
-      Field('usedBy', _$usedBy);
 
   @override
   final MappableFields<PromocodeDto> fields = const {
     #id: _f$id,
     #code: _f$code,
     #duration: _f$duration,
-    #usedBy: _f$usedBy,
   };
 
-  @override
-  final MappingHook hook = const PromocodeHook();
   static PromocodeDto _instantiate(DecodingData data) {
     return PromocodeDto(
         id: data.dec(_f$id),
         code: data.dec(_f$code),
-        duration: data.dec(_f$duration),
-        usedBy: data.dec(_f$usedBy));
+        duration: data.dec(_f$duration));
   }
 
   @override
@@ -106,12 +98,7 @@ extension PromocodeDtoValueCopy<$R, $Out>
 
 abstract class PromocodeDtoCopyWith<$R, $In extends PromocodeDto, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, UserDto, UserDtoCopyWith<$R, UserDto, UserDto>> get usedBy;
-  $R call(
-      {String? id,
-      String? code,
-      PromocodeDurationEnum? duration,
-      List<UserDto>? usedBy});
+  $R call({String? id, String? code, PromocodeDurationEnum? duration});
   PromocodeDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -124,27 +111,17 @@ class _PromocodeDtoCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PromocodeDto> $mapper =
       PromocodeDtoMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, UserDto, UserDtoCopyWith<$R, UserDto, UserDto>> get usedBy =>
-      ListCopyWith($value.usedBy, (v, t) => v.copyWith.$chain(t),
-          (v) => call(usedBy: v));
-  @override
-  $R call(
-          {String? id,
-          String? code,
-          PromocodeDurationEnum? duration,
-          List<UserDto>? usedBy}) =>
+  $R call({String? id, String? code, PromocodeDurationEnum? duration}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (code != null) #code: code,
-        if (duration != null) #duration: duration,
-        if (usedBy != null) #usedBy: usedBy
+        if (duration != null) #duration: duration
       }));
   @override
   PromocodeDto $make(CopyWithData data) => PromocodeDto(
       id: data.get(#id, or: $value.id),
       code: data.get(#code, or: $value.code),
-      duration: data.get(#duration, or: $value.duration),
-      usedBy: data.get(#usedBy, or: $value.usedBy));
+      duration: data.get(#duration, or: $value.duration));
 
   @override
   PromocodeDtoCopyWith<$R2, PromocodeDto, $Out2> $chain<$R2, $Out2>(
