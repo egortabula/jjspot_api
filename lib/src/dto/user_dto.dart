@@ -64,7 +64,7 @@ class UserDtoHook extends MappingHook {
     locations = locations.map((location) => location[r'\$id']).toList();
     value['reviews'] = reviews;
     value['locations'] = locations;
-    value.remove(r'\$id');
+    
     return super.afterEncode(value);
   }
 }

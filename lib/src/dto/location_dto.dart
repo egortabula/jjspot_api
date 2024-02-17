@@ -83,7 +83,7 @@ class LocationDtoHook extends MappingHook {
   @override
   Object? afterEncode(Object? value) {
     value = value as Map<String, dynamic>;
-    value.remove(r'$id');
+   
     return super.afterEncode(value);
   }
 }
