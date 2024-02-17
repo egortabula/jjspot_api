@@ -71,7 +71,6 @@ class UserProvider {
   ) async {
     try {
       Map<String, dynamic> data = request.currentUser.toMap();
-      debugPrint(data.toString());
 
       data.removeWhere((key, value) => key != 'locations');
       debugPrint('data after cleaning: ${data.toString()}');
