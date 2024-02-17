@@ -1,8 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:jjspot_api/jjspot_api.dart';
-import 'package:jjspot_api/src/dto/location_dto.dart';
-import 'package:jjspot_api/src/dto/rate_dto.dart';
 
 part './generated/user_dto.mapper.dart';
 
@@ -19,15 +16,11 @@ class UserDto with UserDtoMappable {
   @MappableField(key: 'locations')
   List<LocationDto> favoriteLocationsList;
 
-  @MappableField(key: 'promoCodes')
-  List<PromocodeDto> promoCodesList;
-
   UserDto({
     required this.id,
     required this.email,
     required this.locationsReview,
     required this.favoriteLocationsList,
-    required this.promoCodesList,
   });
 
   void addLocationReview(RateDto review) {
@@ -54,17 +47,6 @@ class UserDto with UserDtoMappable {
       return false;
     }
   }
-
-  bool get hasActivePromocode {
-    if (promoCodesList.isEmpty) return false;
-
-    PromocodeDto lastCode = promoCodesList.last;
-
-    if (DateTime.now().isAfter(lastCode.validUntil)) {
-      return false;
-    }
-    return true;
-  }
 }
 
 class UserDtoHook extends MappingHook {
@@ -74,15 +56,12 @@ class UserDtoHook extends MappingHook {
     value = value as Map<String, dynamic>;
     List<dynamic> reviews = value['reviews'];
     List<dynamic> locations = value['locations'];
-    List<dynamic> promocodes = value['promoCodes'];
 
     reviews = reviews.map((review) => review['\$id']).toList();
     locations = locations.map((location) => location['\$id']).toList();
-    promocodes = promocodes.map((promoCode) => promoCode['\$id']).toList();
 
     value['reviews'] = reviews;
     value['locations'] = locations;
-    value['promoCodes'] = promocodes;
     return super.afterEncode(value);
   }
 }
