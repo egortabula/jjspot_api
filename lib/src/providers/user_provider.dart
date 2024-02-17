@@ -3,8 +3,6 @@ import 'package:appwrite/models.dart';
 import 'package:dartz/dartz.dart';
 import 'package:jjspot_api/jjspot_api.dart';
 
-
-
 class UserProvider {
   const UserProvider(this._databases, this._account);
 
@@ -99,6 +97,16 @@ class UserProvider {
         return left(AppwriteException('Промокод не существует', 999));
       }
 
+      Preferences prefs = await _account.getPrefs();
+
+      Map<String, dynamic> data = prefs.data;
+
+      if (data.containsKey('code') && data['code'] == code) {
+        return left(
+          AppwriteException('Вы уже использовали этот промокод', 999),
+        );
+      }
+
       final promocode = PromocodeDtoMapper.fromMap(
           searchPromocodesResult.documents.last.data);
 
@@ -134,10 +142,6 @@ class UserProvider {
       String promocodeValidUntil = DateTime.now()
           .add(Duration(minutes: promocodeDurationInMinutes))
           .toIso8601String();
-
-      Preferences prefs = await _account.getPrefs();
-
-      Map<String, dynamic> data = prefs.data;
 
       data['code'] = code;
       data['promocodeValidUntil'] = promocodeValidUntil;
