@@ -36,7 +36,7 @@ class UserProvider {
         databaseId: databaseId,
         collectionId: 'reviews',
         documentId: rateDto.id!,
-        data: rateDto.toMap(),
+        data: rateDto.toMap().remove('\$id'),
       );
 
       final createdRate = RateDtoMapper.fromMap(rateDoc.data);
