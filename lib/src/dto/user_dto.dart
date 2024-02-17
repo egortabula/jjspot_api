@@ -60,11 +60,10 @@ class UserDtoHook extends MappingHook {
     List<dynamic> locations = value['locations'];
     debugPrint('locations afterEncode: ${locations.toString()}');
 
-    reviews = reviews.map((review) => review[r'\$id']).toList();
-    locations = locations.map((location) => location[r'\$id']).toList();
+    reviews = reviews.map((review) => review['\$id']).toList();
+    locations = locations.map((location) => location['\$id']).toList();
     value['reviews'] = reviews;
     value['locations'] = locations;
-    
     return super.afterEncode(value);
   }
 }
