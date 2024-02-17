@@ -61,7 +61,7 @@ class JJspotApi {
 
   StorageProvider get storageProvader => StorageProvider(storage);
 
-  UserProvider get userProvider => UserProvider(databases);
+  UserProvider get userProvider => UserProvider(databases, account);
 
   Future<void> _initDev() async {
     client =
