@@ -2,7 +2,7 @@ import 'package:dart_mappable/dart_mappable.dart';
 import 'package:jjspot_api/jjspot_api.dart';
 part './generated/promocode_dto.mapper.dart';
 
-@MappableClass()
+@MappableClass(hook: PromocodeHook())
 class PromocodeDto with PromocodeDtoMappable {
   @MappableField(key: r'\$id')
   final String id;
