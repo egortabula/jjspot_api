@@ -1,3 +1,4 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:jjspot_api/jjspot_api.dart';
 part './generated/promocode_dto.mapper.dart';
@@ -16,4 +17,9 @@ class PromocodeDto with PromocodeDtoMappable {
     required this.code,
     required this.duration,
   });
+
+  PromocodeDto.draft({
+    this.code = '',
+    this.duration = PromocodeDurationEnum.undefined,
+  }) : id = ID.unique();
 }
