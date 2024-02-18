@@ -8,6 +8,7 @@ import 'package:jjspot_api/src/providers/storage_provider.dart';
 import 'package:jjspot_api/src/providers/user_provider.dart';
 import 'src/consts.dart';
 import 'src/enums/enums.dart';
+import 'package:dart_appwrite/dart_appwrite.dart' as dart_appwrite;
 
 export './src/consts.dart';
 export './src/jjspot_realtime.dart';
@@ -28,7 +29,7 @@ class JJspotApi {
     return _instance!;
   }
 
-  late final Client client;
+  late final dynamic client;
   late AppwriteMode runtimeMode;
 
   Account get account {
@@ -73,9 +74,17 @@ class JJspotApi {
         Client().setEndpoint(appwriteApiEndpoint).setProject(appwriteProjectId);
   }
 
+  Future<void> _initServerProd(String apiKey) async {
+    client = dart_appwrite.Client()
+        .setEndpoint(appwriteApiEndpoint)
+        .setEndpoint(appwriteProjectId)
+        .setKey(apiKey);
+  }
+
   /// Метод инициализации appwrite
   Future<void> init({
     AppwriteMode mode = AppwriteMode.production,
+    String? apiKey,
   }) async {
     runtimeMode = mode;
     switch (mode) {
@@ -83,6 +92,8 @@ class JJspotApi {
         return await _initDev();
       case AppwriteMode.production:
         return await _initProd();
+      case AppwriteMode.server:
+        return await _initServerProd(apiKey!);
     }
   }
 }
