@@ -14,11 +14,14 @@ class AdminProvider {
     LocationDto location,
   ) async {
     try {
+      Map<String, dynamic> data = location.toMap();
+
+      data.remove('\$id');
       final doc = await _databases.createDocument(
         databaseId: databaseId,
         collectionId: locationsCollectionId,
         documentId: location.id!,
-        data: location.toMap(),
+        data: data,
       );
 
       final locationModel = LocationDtoMapper.fromMap(doc.data);
