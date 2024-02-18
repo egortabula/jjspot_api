@@ -15,6 +15,7 @@ class LocationDtoMapper extends ClassMapperBase<LocationDto> {
       MapperContainer.globals.use(_instance = LocationDtoMapper._());
       LocationTypeEnumMapper.ensureInitialized();
       LocationFeaturesEnumMapper.ensureInitialized();
+      RateDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -50,6 +51,9 @@ class LocationDtoMapper extends ClassMapperBase<LocationDto> {
       Field('features', _$features);
   static double _$rating(LocationDto v) => v.rating;
   static const Field<LocationDto, double> _f$rating = Field('rating', _$rating);
+  static List<RateDto> _$reviews(LocationDto v) => v.reviews;
+  static const Field<LocationDto, List<RateDto>> _f$reviews =
+      Field('reviews', _$reviews);
 
   @override
   final MappableFields<LocationDto> fields = const {
@@ -64,6 +68,7 @@ class LocationDtoMapper extends ClassMapperBase<LocationDto> {
     #isHide: _f$isHide,
     #features: _f$features,
     #rating: _f$rating,
+    #reviews: _f$reviews,
   };
 
   @override
@@ -80,7 +85,8 @@ class LocationDtoMapper extends ClassMapperBase<LocationDto> {
         type: data.dec(_f$type),
         isHide: data.dec(_f$isHide),
         features: data.dec(_f$features),
-        rating: data.dec(_f$rating));
+        rating: data.dec(_f$rating),
+        reviews: data.dec(_f$reviews));
   }
 
   @override
@@ -140,6 +146,7 @@ abstract class LocationDtoCopyWith<$R, $In extends LocationDto, $Out>
   ListCopyWith<$R, LocationFeaturesEnum,
           ObjectCopyWith<$R, LocationFeaturesEnum, LocationFeaturesEnum>>
       get features;
+  ListCopyWith<$R, RateDto, RateDtoCopyWith<$R, RateDto, RateDto>> get reviews;
   $R call(
       {String? id,
       String? name,
@@ -151,7 +158,8 @@ abstract class LocationDtoCopyWith<$R, $In extends LocationDto, $Out>
       LocationTypeEnum? type,
       bool? isHide,
       List<LocationFeaturesEnum>? features,
-      double? rating});
+      double? rating,
+      List<RateDto>? reviews});
   LocationDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -173,6 +181,10 @@ class _LocationDtoCopyWithImpl<$R, $Out>
       get features => ListCopyWith($value.features,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(features: v));
   @override
+  ListCopyWith<$R, RateDto, RateDtoCopyWith<$R, RateDto, RateDto>>
+      get reviews => ListCopyWith($value.reviews,
+          (v, t) => v.copyWith.$chain(t), (v) => call(reviews: v));
+  @override
   $R call(
           {Object? id = $none,
           String? name,
@@ -184,7 +196,8 @@ class _LocationDtoCopyWithImpl<$R, $Out>
           Object? type = $none,
           bool? isHide,
           List<LocationFeaturesEnum>? features,
-          double? rating}) =>
+          double? rating,
+          List<RateDto>? reviews}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (name != null) #name: name,
@@ -196,7 +209,8 @@ class _LocationDtoCopyWithImpl<$R, $Out>
         if (type != $none) #type: type,
         if (isHide != null) #isHide: isHide,
         if (features != null) #features: features,
-        if (rating != null) #rating: rating
+        if (rating != null) #rating: rating,
+        if (reviews != null) #reviews: reviews
       }));
   @override
   LocationDto $make(CopyWithData data) => LocationDto.base(
@@ -210,7 +224,8 @@ class _LocationDtoCopyWithImpl<$R, $Out>
       type: data.get(#type, or: $value.type),
       isHide: data.get(#isHide, or: $value.isHide),
       features: data.get(#features, or: $value.features),
-      rating: data.get(#rating, or: $value.rating));
+      rating: data.get(#rating, or: $value.rating),
+      reviews: data.get(#reviews, or: $value.reviews));
 
   @override
   LocationDtoCopyWith<$R2, LocationDto, $Out2> $chain<$R2, $Out2>(
