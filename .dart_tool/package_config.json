@@ -152,6 +152,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "dart_appwrite",
+      "rootUri": "file:///Users/egortabula/.pub-cache/hosted/pub.dev/dart_appwrite-10.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "dart_mappable",
       "rootUri": "file:///Users/egortabula/.pub-cache/hosted/pub.dev/dart_mappable-4.2.0",
       "packageUri": "lib/",
@@ -638,7 +644,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2024-02-15T19:35:17.106507Z",
+  "generated": "2024-02-18T10:37:39.773919Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

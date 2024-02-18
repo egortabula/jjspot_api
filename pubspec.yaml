@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   appwrite: ^11.0.0
+  dart_appwrite: ^10.1.1
   dart_mappable: ^4.2.0
   dartz: ^0.10.1
   flutter:
