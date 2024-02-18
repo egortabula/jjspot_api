@@ -1,14 +1,11 @@
 library jjspot_api;
 
 import 'package:appwrite/appwrite.dart';
-import 'package:jjspot_api/src/providers/admin_provider.dart';
-import 'package:jjspot_api/src/providers/auth_provider.dart';
-import 'package:jjspot_api/src/providers/locations_provider.dart';
-import 'package:jjspot_api/src/providers/storage_provider.dart';
-import 'package:jjspot_api/src/providers/user_provider.dart';
 import 'src/consts.dart';
 import 'src/enums/enums.dart';
 import 'package:dart_appwrite/dart_appwrite.dart' as dart_appwrite;
+
+import 'src/providers/providers.dart';
 
 export './src/consts.dart';
 export './src/jjspot_realtime.dart';
@@ -63,6 +60,8 @@ class JJspotApi {
   StorageProvider get storageProvader => StorageProvider(storage);
 
   UserProvider get userProvider => UserProvider(databases, account);
+
+  PromocodesProvider get promocodesProvider => PromocodesProvider(databases);
 
   Future<void> _initDev() async {
     client =
