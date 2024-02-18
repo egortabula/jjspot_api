@@ -1,7 +1,6 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:jjspot_api/src/enums/location_features_enum.dart';
-import 'package:jjspot_api/src/enums/location_type_enum.dart';
+import 'package:jjspot_api/jjspot_api.dart';
 part './generated/location_dto.mapper.dart';
 
 @MappableClass(
@@ -20,6 +19,7 @@ class LocationDto with LocationDtoMappable {
   double lat;
   double lng;
   bool isHide;
+  List<RateDto> reviews;
 
   LocationDto.base({
     required this.id,
@@ -33,6 +33,7 @@ class LocationDto with LocationDtoMappable {
     required this.isHide,
     required this.features,
     required this.rating,
+    required this.reviews,
   });
 
   LocationDto.draft({
@@ -46,7 +47,8 @@ class LocationDto with LocationDtoMappable {
     required this.isHide,
     required this.features,
   })  : id = ID.unique(),
-        rating = 0;
+        rating = 0,
+        reviews = [];
 
   LocationDto.demo({
     this.id = 'demo',
@@ -72,6 +74,7 @@ class LocationDto with LocationDtoMappable {
     ],
     this.rating = 0.0,
     this.address = 'Ривьерский переулок, 7 ',
+    this.reviews = const [],
   });
 
   bool get isDemo => id == 'demo';
@@ -83,7 +86,11 @@ class LocationDtoHook extends MappingHook {
   @override
   Object? afterEncode(Object? value) {
     value = value as Map<String, dynamic>;
-   
+
+    List<Map<String, dynamic>> reviews = value['reviews'];
+
+    reviews.map((review) => review['\$id']).toList();
+    value['reviews'] = reviews;
     return super.afterEncode(value);
   }
 }
