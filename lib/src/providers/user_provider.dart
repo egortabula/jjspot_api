@@ -87,20 +87,24 @@ class UserProvider {
   Future<Either<AppwriteException, User>> applyPromocode(
       {required String code}) async {
     try {
+      // Ищем в базе данных промокод с кодом [code]
       final searchPromocodesResult = await _databases.listDocuments(
         databaseId: databaseId,
         collectionId: 'promoCodes',
         queries: [Query.equal('code', code)],
       );
 
+      // Проверяем существует ли промокод в базе
       if (searchPromocodesResult.total == 0) {
         return left(AppwriteException('Промокод не существует', 999));
       }
 
+      // Получаем массив с данными пользователя
       Preferences prefs = await _account.getPrefs();
 
       Map<String, dynamic> data = prefs.data;
 
+      // Проверяем был ли уже использован код переданный в [code]
       if (data.containsKey('code') && data['code'] == code) {
         return left(
           AppwriteException('Вы уже использовали этот промокод', 999),
@@ -108,7 +112,8 @@ class UserProvider {
       }
 
       final promocode = PromocodeDtoMapper.fromMap(
-          searchPromocodesResult.documents.last.data);
+        searchPromocodesResult.documents.last.data,
+      );
 
       int promocodeDurationInMinutes;
 
