@@ -19,7 +19,7 @@ class LocationDto with LocationDtoMappable {
   double lat;
   double lng;
   bool isHide;
-  List<RateDto> reviews;
+  List<RateDto>? reviews;
 
   LocationDto.base({
     required this.id,
