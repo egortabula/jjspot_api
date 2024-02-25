@@ -51,7 +51,7 @@ class LocationDtoMapper extends ClassMapperBase<LocationDto> {
       Field('features', _$features);
   static double _$rating(LocationDto v) => v.rating;
   static const Field<LocationDto, double> _f$rating = Field('rating', _$rating);
-  static List<RateDto> _$reviews(LocationDto v) => v.reviews;
+  static List<RateDto>? _$reviews(LocationDto v) => v.reviews;
   static const Field<LocationDto, List<RateDto>> _f$reviews =
       Field('reviews', _$reviews);
 
@@ -146,7 +146,7 @@ abstract class LocationDtoCopyWith<$R, $In extends LocationDto, $Out>
   ListCopyWith<$R, LocationFeaturesEnum,
           ObjectCopyWith<$R, LocationFeaturesEnum, LocationFeaturesEnum>>
       get features;
-  ListCopyWith<$R, RateDto, RateDtoCopyWith<$R, RateDto, RateDto>> get reviews;
+  ListCopyWith<$R, RateDto, RateDtoCopyWith<$R, RateDto, RateDto>>? get reviews;
   $R call(
       {String? id,
       String? name,
@@ -181,9 +181,11 @@ class _LocationDtoCopyWithImpl<$R, $Out>
       get features => ListCopyWith($value.features,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(features: v));
   @override
-  ListCopyWith<$R, RateDto, RateDtoCopyWith<$R, RateDto, RateDto>>
-      get reviews => ListCopyWith($value.reviews,
-          (v, t) => v.copyWith.$chain(t), (v) => call(reviews: v));
+  ListCopyWith<$R, RateDto, RateDtoCopyWith<$R, RateDto, RateDto>>?
+      get reviews => $value.reviews != null
+          ? ListCopyWith($value.reviews!, (v, t) => v.copyWith.$chain(t),
+              (v) => call(reviews: v))
+          : null;
   @override
   $R call(
           {Object? id = $none,
@@ -197,7 +199,7 @@ class _LocationDtoCopyWithImpl<$R, $Out>
           bool? isHide,
           List<LocationFeaturesEnum>? features,
           double? rating,
-          List<RateDto>? reviews}) =>
+          Object? reviews = $none}) =>
       $apply(FieldCopyWithData({
         if (id != $none) #id: id,
         if (name != null) #name: name,
@@ -210,7 +212,7 @@ class _LocationDtoCopyWithImpl<$R, $Out>
         if (isHide != null) #isHide: isHide,
         if (features != null) #features: features,
         if (rating != null) #rating: rating,
-        if (reviews != null) #reviews: reviews
+        if (reviews != $none) #reviews: reviews
       }));
   @override
   LocationDto $make(CopyWithData data) => LocationDto.base(
