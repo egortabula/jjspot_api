@@ -54,10 +54,13 @@ class UserDtoHook extends MappingHook {
   @override
   Object? afterEncode(Object? value) {
     value = value as Map<String, dynamic>;
-    List<dynamic> reviews = value['reviews'];
+    List<dynamic>? reviews = value['reviews'];
     List<dynamic> locations = value['locations'];
 
-    reviews = reviews.map((review) => review['\$id']).toList();
+    if (reviews != null) {
+      reviews = reviews.map((review) => review['\$id']).toList();
+    }
+
     locations = locations.map((location) => location['\$id']).toList();
 
     value['reviews'] = reviews;
