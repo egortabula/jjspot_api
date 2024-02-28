@@ -87,10 +87,12 @@ class LocationDtoHook extends MappingHook {
   Object? afterEncode(Object? value) {
     value = value as Map<String, dynamic>;
 
-    List<dynamic> reviews = value['reviews'];
+    List<dynamic>? reviews = value['reviews'];
+    if (reviews != null) {
+      reviews.map((review) => review['\$id']).toList();
+      value['reviews'] = reviews;
+    }
 
-    reviews.map((review) => review['\$id']).toList();
-    value['reviews'] = reviews;
     return super.afterEncode(value);
   }
 }
