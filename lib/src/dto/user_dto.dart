@@ -59,11 +59,11 @@ class UserDtoHook extends MappingHook {
 
     if (reviews != null) {
       reviews = reviews.map((review) => review['\$id']).toList();
+      value['reviews'] = reviews;
     }
 
     locations = locations.map((location) => location['\$id']).toList();
 
-    value['reviews'] = reviews;
     value['locations'] = locations;
     return super.afterEncode(value);
   }
