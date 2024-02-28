@@ -1,6 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:jjspot_api/jjspot_api.dart';
 
 class UserProvider {
@@ -68,6 +69,7 @@ class UserProvider {
     UpdateFavoriteLocationsRequest request,
   ) async {
     try {
+      debugPrint(request.currentUser.toString());
       Map<String, dynamic> data = request.currentUser.toMap();
 
       data.removeWhere((key, value) => key != 'locations');
