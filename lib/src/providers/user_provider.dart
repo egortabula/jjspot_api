@@ -69,15 +69,13 @@ class UserProvider {
     UpdateFavoriteLocationsRequest request,
   ) async {
     try {
-      debugPrint(request.currentUser.toString());
-      Map<String, dynamic> data = request.currentUser.toMap();
-
-      data.removeWhere((key, value) => key != 'locations');
+      final favoriteLocations =
+          request.currentUser.favoriteLocationsList.map((e) => e.id).toList();
       final doc = await _databases.updateDocument(
         databaseId: databaseId,
         collectionId: usersCollectionId,
         documentId: request.currentUser.id,
-        data: data,
+        data: {'locations': favoriteLocations},
       );
       final res = UserDtoMapper.fromMap(doc.data);
       return right(res);
